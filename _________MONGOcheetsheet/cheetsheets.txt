@@ -1,0 +1,90 @@
+---MongoDb cmds for Databases--->>>
+
+view all Databases::
+>>show dbs
+
+create a new or switch Databases::
+>>use dbName
+
+view current Database::
+>>db
+
+Delete Database::
+>>db.dropDatabase()
+
+---MongoDb cmds for Collections--->>>
+
+show Collections::
+>>show Collections
+
+create a Collection named 'comments'::
+>>db.createCollection('comments')
+
+Delete a Collection named 'comments'::
+>>db.comments.drop()
+
+---MongoDb cmds for rows::
+
+Show all Rows in a Collection::
+>>db.comments.find()
+
+Insert One row::
+>>db.comments.insert({
+    'name': 'abhay',
+    'lang': 'Javascript',
+    'exp': '5years',
+})
+
+Insert Many row::
+>>db.comments.insertMany([{
+    'name': 'abhay',
+    'lang': 'Javascript',
+    'exp': '5years',
+},
+{
+    'name': 'rohit',
+    'lang': 'python',
+    'exp': '3years',
+},
+{
+    'name': 'lokesh',
+    'lang': 'Corejava',
+    'exp': '7years',
+}
+
+])
+
+Show all Rows in a Collection (Prettified) ::
+>>db.comments.find().pretty()
+
+---Find the first row matching the object
+>>db.comments.findOne({name:'abhay'})
+
+---Search in a MongoDb Database::
+
+>>db.comments.find({lang:'python'})
+
+
+---Limit the number of rows in output::
+
+>>db.comments.find({lang:'python'}).limit(2)
+
+
+---Count the number of rows in the output
+
+>>db.comments.find().count()
+>>db.comments.find().pretty().limit(2).count()
+>>db.comments.find({name:'abhay'}).count()
+
+
+---sort cmd for arrange according to the users..
+
+>>db.comments.find().sort({age:-1})
+
+
+---Update a row
+>>db.comments.update({name:'abhay'},{
+    'name': 'abhay',
+    'lang': 'Javascript',
+    'exp': '1years',
+})
